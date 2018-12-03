@@ -67,8 +67,40 @@ body {
     font-size:1.6em;
     z-index: 333;
     color: white;
-
   }
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+
+@media (max-width: 768px) { 
+    p{
+        font-size: 1.2em;
+        color: white;
+      }
+    h2 {
+        font-size: 1.2em;
+        color: white;
+    }
+  
+    h3 {
+      font-size: .8em;
+      color: white;
+      margin-bottom: 30px;
+  }
+    
+
+    #guessableWord li {
+        position: relative;
+        list-style: none;
+        margin: 0;
+        display: inline-block;
+        padding: 0 10px;
+        font-size: .7em;
+        z-index: 333;
+        color: white;
+      }
+} 
+
   
   #gameStatus {
       color: white;
