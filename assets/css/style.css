@@ -2,45 +2,60 @@
 body {
     background:#333;
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-    color: white;
+    color: black;
     height:100%;
     text-align:center;
     font-size:18px;
+    margin-top: 0px;
   }
   
-  .wrappper{
-    @include clear;
-    width:100%;
-    margin:0 auto;
+  .container-fluid {
+    padding-top: 80px;
+    background-image: url('../images/outerspace.jpg');
+    background-size: cover;
+    height:100vh;
+    z-index: 111;
   }
-  
-  
+
   h1, h2, h3 {
       font-family: 'Roboto', sans-serif;
       font-weight: 100;
       text-transform: uppercase;
      margin:5px 0;
+     color: white;
   }
   
   h1 {
       font-size: 2.6em;
+      color: white;
   }
   
   h2 {
       font-size: 1.6em;
+      color: white;
   }
+
+  h3 {
+    font-size: 1em;
+    color: white;
+    margin-bottom: 30px;
+}
   
   p{
     font-size: 1.6em;
+    color: white;
   }
   
   ul {
       padding: 0px;
+      color: white;
   }
   
   #guessableWord {
     margin: 0;
     padding: 0;
+    z-index: 333;
+    color: white;
   }
   
   #guessableWord li {
@@ -50,12 +65,21 @@ body {
     display: inline-block;
     padding: 0 10px;
     font-size:1.6em;
+    z-index: 333;
+    color: white;
+
   }
   
+  #gameStatus {
+      color: white;
+  }
 
   #guessword {
     margin: 0;
     padding: 0;
+    z-index: 333;
+    color: white;
+
   }
   
   #guessword li {
@@ -65,17 +89,23 @@ body {
     display: inline-block;
     padding: 0 10px;
     font-size:1.6em;
+    z-index: 333;
+    color: white;
+
   }
   
     #mylives{
     font-size:1.6em;
     text-align:center;
     display:block;
+    z-index: 333;
+    color: white;
+
   }
   
   button{
     background: #eee;
-    color: black;
+    color: white;
     border: solid 1px white;
     text-decoration:none;
     cursor:pointer;
@@ -84,7 +114,8 @@ body {
     width:180px;
     margin: 10px;
     outline: none;
-    
+    z-index: 333;
+
       &:hover{
         background:white;
         border: solid 1px $white;
