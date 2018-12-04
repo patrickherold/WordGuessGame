@@ -105,9 +105,17 @@ function checkScore() {
     if (remainingGuesses == 0 && letters.length > 0) {
         guessableWordDiv.style.diplay = "none";
         gameStatusDiv.textContent = "GAME OVER LOOSER";
-        var audio = new Audio('assets/sounds/DamnAnnoying.mp3');
-        audio.play();
 
+        // tell them what the correct word was.
+        var msg = new SpeechSynthesisUtterance("You loose, it was: " + guessWord);
+        window.speechSynthesis.speak(msg);              
+
+        // add a pause and play this audio
+        setTimeout(function (){
+            var audio = new Audio('assets/sounds/DamnAnnoying.mp3');
+            audio.play();
+    
+          }, 3000);
     }
     // if there are no more letters to guess, you've won!
     else if (letters === undefined || letters.length == 0) {
@@ -116,8 +124,15 @@ function checkScore() {
         // array empty or does not exist
         guessableWordDiv.style.diplay = "none";
         gameStatusDiv.textContent = "YOU WIN";
-        var audio = new Audio('assets/sounds/Iwin.mp3');
-        audio.play();
+        var msg = new SpeechSynthesisUtterance("Winner winner chicken dinner, it is: " + guessWord);
+        window.speechSynthesis.speak(msg);              
+
+         // add a pause then play this audio
+         setTimeout(function (){
+            var audio = new Audio('assets/sounds/Iwin.mp3');
+            audio.play();
+        
+          }, 3000);
     }
     else {
         // you pressed more keys after loosing
@@ -158,48 +173,4 @@ function printLetters() {
     guessableWordDiv.innerHTML = listLetters;
 
 };
-
-
-//  make some asteroids fly around the screen
-
-// Define an Asteroid constructor
-function Asteroid(width, height) {
-    this.width = width;
-    this.height = height;
-    this.x = width/2;
-    this.y = -6;
-    this.min = 1.6;
-    this.max = 2.2;
-    this.speed = 1.6;
-}
-
-// Move asteroid
-Asteroid.prototype.move = function() {
-    if(this.y < this.height) {
-        this.y += this.speed;
-    } else {
-        this.y = -6;
-        this.x = Math.random()*(this.width-0)-0;
-    }
-}
-
-// Draw asteroid
-Asteroid.prototype.draw = function() {
-    ctx.beginPath();
-    ctx.fillStyle = "#D9BA5F";
-    ctx.arc(this.x, this.y, 3, 0, 2*Math.PI, false);
-    ctx.closePath();
-    ctx.fill();
-}
-
-var asteroids = [];
-// create 10 asteroids
-for(var i = 0; i < 10; i++) {
-    asteroids.push(new Asteroid(Math.random()*10, Math.random()*10));
-}
-
-for(var i = 0; i < asteroids.length; i++) {
-    asteroids[i].move();
-    asteroids[i].draw();
-}
 
