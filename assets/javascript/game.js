@@ -12,7 +12,7 @@ var numberOfGuesses = document.getElementById("numberOfGuesses");
 // VARIABLES
 
 // all possible words in the game
-var guessableWords = ["antimatter","asteroid","celestial","comet","cosmit","moon","sun","stars","mars","jupiter","neptune","meteor","exoplanet","saturn","galaxy","radiation"];
+var guessableWords = ["antimatter","asteroid","celestial","comet","cosmic","moon","sun","stars","mars","jupiter","neptune","meteor","exoplanet","saturn","galaxy","radiation"];
 
 // pick the word you're trying to guess from list of available words above
 var guessWord = guessableWords[Math.floor(Math.random() * guessableWords.length)];
@@ -85,18 +85,25 @@ function setupGame() {
 
 // after a key is pressed check the letters to see if they are in the word
 function checkLetters() {
-    // if the guessed letter is included in the letters array, that's a good guess.
-    if (letters.includes(currentGuess)) {
-        // removes good guessed letters from array.
-        for(var i = letters.length; i--;){
-            if (letters[i] === currentGuess) letters.splice(i, 1);
+    // make sure to only accept a-z
+    if (currentGuess.match(/^[A-Za-z]+$/)) {
+        // if the guessed letter is included in the letters array, that's a good guess.
+        if (letters.includes(currentGuess)) {
+            // removes good guessed letters from array.
+            for(var i = letters.length; i--;){
+                if (letters[i] === currentGuess) letters.splice(i, 1);
+            }
+        }
+        // there must be more letters and turns to get here... keep guessing. 
+        else {
+            // This must have been a bad guess or we wouldn't get here. So take one from  remaing guesses. 
+            remainingGuesses--;
         }
     }
-    // there must be more letters and turns to get here... keep guessing. 
     else {
-        // This must have been a bad guess or we wouldn't get here. So take one from  remaing guesses. 
-        remainingGuesses--;
-    }
+        var msg = new SpeechSynthesisUtterance("Sorry, that is not a valid letter");
+        window.speechSynthesis.speak(msg);
+    };
 };
 
 function checkScore() {
