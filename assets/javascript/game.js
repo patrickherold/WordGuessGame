@@ -16,7 +16,7 @@ var guessedLettersDiv = document.getElementById("guessedLetters");
 // VARIABLES
 
 // all possible words in the game
-var guessableWords = ["antimatter","asteroid","celestial","comet","cosmic","moon","sun","stars","mars","jupiter","neptune","meteor","exoplanet","saturn","galaxy","radiation"];
+var guessableWords = ["antimatter","asteroid","celestial","comet","cosmic","moon","sun","stars","mars","jupiter","neptune","meteor","exoplanet","saturn","galaxy","radiation","pluto","earth","venus","galaxy","satellite","gravity","antimatter","expansion","cosmology","astronaut","orbit"];
 
 // space background images
 var spaceBackgrounds = ["outerspace.jpg","earthsun.jpg","rocket.jpg","europe.jpg","planet.jpg"]
