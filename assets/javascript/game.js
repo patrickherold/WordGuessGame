@@ -10,6 +10,8 @@ var guessesDiv = document.getElementById("guesses");
 var guessableWordDiv = document.getElementById("guessableWord");
 var numberOfGuesses = document.getElementById("numberOfGuesses");
 var newBackgroundDiv = document.getElementById("bgImage");
+var guessedLettersDiv = document.getElementById("guessedLetters");
+
 
 // VARIABLES
 
@@ -99,8 +101,6 @@ function setupGame() {
     numberOfGuesses.style.display = "inline";
     numberOfGuesses.innerHTML = "You have " + remainingGuesses + " guesses for this word.";
 
-    tallyScore();
-
     // get new random background url from the spaceBackgrounds array
     newBackground = spaceBackgrounds[Math.floor(Math.random() * spaceBackgrounds.length)];
 
@@ -108,6 +108,8 @@ function setupGame() {
     newBackgroundDiv.style.backgroundImage = "url('assets/images/" + newBackground + "')"; 
     
     printLetters();
+
+    guessedLettersDiv.style.display = "none";
 
 }
 
@@ -145,6 +147,9 @@ function checkScore() {
         // assign the results of the game if you loose.
         Games.results.push("LOSS");
 
+        tallyScore();
+
+
         // tell them what the correct word was.
         var msg = new SpeechSynthesisUtterance("You loose, it was: " + guessWord);
         window.speechSynthesis.speak(msg);              
@@ -167,6 +172,9 @@ function checkScore() {
         // assign the results of the game if you win
         Games.results.push("WIN");
 
+        tallyScore();
+
+
         // Tell us the result and say the word
         var msg = new SpeechSynthesisUtterance("Winner winner chicken dinner, it is: " + guessWord);
         window.speechSynthesis.speak(msg);              
@@ -177,6 +185,7 @@ function checkScore() {
             audio.play();
         
           }, 3000);
+
     }
     else {
         // you pressed more keys after loosing
@@ -190,6 +199,9 @@ function checkScore() {
 
             // You didn't loose or win so display the number of guesses remaining. 
             gameStatusDiv.textContent = "You have " + remainingGuesses + " guesses remaining.";
+            guessedLetters();
+
+            guessedLettersDiv.style.display = "block";
         }
     }
 };
@@ -237,6 +249,23 @@ function tallyScore() {
 
     // print out the updated list
     tallyResultsDiv.innerHTML = listResults;
+
+};
+
+function guessedLetters() {
+    // start a list
+    listResults = "<ul>";
+
+    //  add game results to list
+    for (var l = 0; l < guesses.length; l++) {
+        listResults += "<li> " + guesses[l] + " </li>";
+    };
+
+    // close list
+    listResults += "</ul>";
+
+    // print out the updated list
+    guessedLettersDiv.innerHTML = listResults;
 
 };
 
