@@ -9,11 +9,15 @@ var gameStatusDiv = document.getElementById("gameStatus");
 var guessesDiv = document.getElementById("guesses");
 var guessableWordDiv = document.getElementById("guessableWord");
 var numberOfGuesses = document.getElementById("numberOfGuesses");
+var newBackgroundDiv = document.getElementById("bgImage");
 
 // VARIABLES
 
 // all possible words in the game
 var guessableWords = ["antimatter","asteroid","celestial","comet","cosmic","moon","sun","stars","mars","jupiter","neptune","meteor","exoplanet","saturn","galaxy","radiation"];
+
+// space background images
+var spaceBackgrounds = ["outerspace.jpg","earthsun.jpg","rocket.jpg","europe.jpg","planet.jpg"]
 
 // pick the word you're trying to guess from list of available words above
 var guessWord = guessableWords[Math.floor(Math.random() * guessableWords.length)];
@@ -96,8 +100,15 @@ function setupGame() {
     numberOfGuesses.innerHTML = "You have " + remainingGuesses + " guesses for this word.";
 
     tallyScore();
+
+    // get new random background url from the spaceBackgrounds array
+    newBackground = spaceBackgrounds[Math.floor(Math.random() * spaceBackgrounds.length)];
+
+    // update the css id to the new image
+    newBackgroundDiv.style.backgroundImage = "url('assets/images/" + newBackground + "')"; 
     
     printLetters();
+
 }
 
 
@@ -226,5 +237,8 @@ function tallyScore() {
 
     // print out the updated list
     tallyResultsDiv.innerHTML = listResults;
+
 };
+
+
 

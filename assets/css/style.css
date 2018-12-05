@@ -10,11 +10,17 @@ body {
   }
   
   .container-fluid {
+    padding: 0px;
+    margin: 0px;
+  }
+
+  #bgImage {
     padding-top: 80px;
     background-image: url('../images/outerspace.jpg');
     background-size: cover;
     height:100vh;
     z-index: 111;
+
   }
 
   h1, h2, h3 {
