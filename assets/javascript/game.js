@@ -27,6 +27,9 @@ var guessWord = guessableWords[Math.floor(Math.random() * guessableWords.length)
 // each letter user guesses.
 var guesses = [];
 
+// incorrect guesses
+var badGuesses = [];
+
 // letters in this array are removed with each correct guess. This helps decide if you won.
 var letters = [];
 
@@ -89,6 +92,8 @@ function setupGame() {
     guessWordArray = [];
     currentGuess = "x";
     guessWord = [];
+    badGuesses = [];
+    guessedLetters();
 
     newGuessWord();
 
@@ -108,9 +113,7 @@ function setupGame() {
     newBackgroundDiv.style.backgroundImage = "url('assets/images/" + newBackground + "')"; 
     
     printLetters();
-
-    guessedLettersDiv.style.display = "none";
-
+    
 }
 
 
@@ -127,8 +130,11 @@ function checkLetters() {
         }
         // there must be more letters and turns to get here... keep guessing. 
         else {
+            badGuesses += currentGuess;
             // This must have been a bad guess or we wouldn't get here. So take one from  remaing guesses. 
             remainingGuesses--;
+            guessedLetters();
+
         }
     }
     else {
@@ -199,9 +205,7 @@ function checkScore() {
 
             // You didn't loose or win so display the number of guesses remaining. 
             gameStatusDiv.textContent = "You have " + remainingGuesses + " guesses remaining.";
-            guessedLetters();
 
-            guessedLettersDiv.style.display = "block";
         }
     }
 };
@@ -253,12 +257,13 @@ function tallyScore() {
 };
 
 function guessedLetters() {
+
     // start a list
     listResults = "<ul>";
 
     //  add game results to list
-    for (var l = 0; l < guesses.length; l++) {
-        listResults += "<li> " + guesses[l] + " </li>";
+    for (var l = 0; l < badGuesses.length; l++) {
+        listResults += "<li> " + badGuesses[l] + " </li>";
     };
 
     // close list
